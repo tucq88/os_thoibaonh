@@ -1,0 +1,13 @@
+<?php if (count($this->articles) > 0) : ?>
+<div class="topic-left" style="padding-top: 10px;">
+	<div class="dot_Hotnews">
+		<?php if ($this->articles[0]->image_medium != null) : ?>
+		<div class="newsphoto"><a href="<?php echo $this->url($this->articles[0]->getProperties(), 'news_article_details'); ?>"><img src="<?php echo $this->articles[0]->image_medium; ?>" style="width: 380px; height: 280px;" alt="<?php echo $this->escape($this->articles[0]->title); ?>"></a></div>
+		<?php endif; ?>
+		<div class="head01">
+			<img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/ico_new.gif" /><a href="<?php echo $this->url($this->articles[0]->getProperties(), 'news_article_details'); ?>"> <?php echo $this->escape($this->articles[0]->title); ?></a>
+		</div>
+		<span><?php echo $this->articles[0]->description; ?></span>
+	</div>
+</div>
+<?php endif; ?>

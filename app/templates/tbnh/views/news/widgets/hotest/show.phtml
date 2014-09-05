@@ -1,0 +1,50 @@
+<?php if (($numArticles = count($this->articles)) > 0) : ?>
+<div id="topnews">	
+	<div class="top4 fl" id="top4">	
+		<div class="hotnews-top fl"></div>
+		<div class="hotnews-content fl">
+			<div class="hotnews-detail fl">
+				<p><?php if ($this->articles[0]->image_small) : ?><a href="<?php echo $this->url($this->articles[0]->getProperties(), 'news_article_details'); ?>"><img src="<?php echo $this->articles[0]->image_small; ?>" class="img-topnews fl" alt=""></a><?php endif; ?><a href="<?php echo $this->url($this->articles[0]->getProperties(), 'news_article_details'); ?>" class="link-topnews"><?php echo $this->escape($this->articles[0]->title); ?></a></p>
+				<?php echo $this->articles[0]->description; ?>
+			</div>
+		</div>
+	<div class="hotnews-bottom fl"></div>
+	<?php if ($numArticles > 2) : ?>	
+	<div class="t3 fl">	
+		<?php for ($i = 1; $i < (($numArticles > 4) ? 4 : $numArticles); $i++) : ?>	
+		<div class="t3-content fl">
+			<?php if ($this->articles[$i]->image_general) : ?><p><a href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>"><img src="<?php echo $this->articles[$i]->image_general; ?>" class="img-top3" alt=""></a></p><?php endif; ?>
+			<p><a href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>" class="link-title"><?php echo $this->escape($this->articles[$i]->title); ?></a></p>
+		</div>		
+		<?php endfor; ?>
+	</div>	
+	<?php endif; ?>	
+	<script type="text/javascript">dFormat('<?php echo date('n/j/Y g:i A'); ?>');</script>
+</div>
+<div class="toplist fl">
+	<div class="toplist-date fl">
+		<div class="hotnews-date fl txtr" id="topnewsdate"></div>
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/date-arrow.gif"></div>
+		<script language="javascript" type="text/javascript">writeTopDate();</script>
+	</div>
+	<div class="toplist-top fl"></div>
+	<?php if ($numArticles > 4) : ?>
+	<div class="toplist-middle fl">
+		<div class="toplist-left fl">
+			<div class="toplist-content fl" id="toplist">
+				<ul>
+					<?php for ($i = 4; $i < $numArticles; $i++) : ?>	
+					<li><a href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>" class="link-toplist"><?php echo $this->escape($this->articles[$i]->title); ?></a></li>
+					<?php endfor; ?>
+				</ul>
+			</div>
+		</div>
+		<div class="toplist-right fl ftz1">&nbsp;</div>
+	</div>
+	<?php endif; ?>
+	<div class="toplist-bottom fl"></div>
+</div>
+
+			
+		</div>
+<?php endif; ?>

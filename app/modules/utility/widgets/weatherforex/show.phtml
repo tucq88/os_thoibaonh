@@ -1,0 +1,114 @@
+<div class="blocutils">
+	<div class="blocutilscont">
+		<div class="util01">
+			<p class="utiltitle"><img width="17" height="18" alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/icon_weather.gif"> Thời tiết</p>
+			<div class="cont09">
+				<div id="cboWeather">
+					<select id="cboWeatherCity">
+						<option value="1">Sơn La</option>
+						<option value="3">Hải Phòng</option>
+						<option value="4" selected="selected">Hà Nội</option>
+						<option value="5">Vinh</option>
+						<option value="6">Đà Nẵng</option>
+						<option value="7">Nha Trang</option>
+						<option value="8">Pleiku</option>
+						<option value="9">TP HCM</option>
+					</select>
+				</div>
+				<div id="weatherContent"></div><br class="clear">
+			</div>
+		</div>
+		<div class="util02">
+			<p class="utiltitle"><img width="17" height="18" alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/icon_gold.gif"> Vàng</p>
+			<div id="otblGold">
+				<table cellspacing="1" cellpadding="0" border="1" bgcolor="#b9b9b9" width="100%" class="tblgold" style="border: 1px solid #ccc;">
+					<tbody id="tblGold">
+						<tr>
+							<td width="30">Loại</td><td align="center">Mua</td><td align="center">Bán</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<p class="utiltitle"><img width="17" height="18" alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/icon_exchange.gif"> Ngoại Tệ</p>
+			<div class="blocexchange" id="otblTygia">
+				<table cellspacing="1" cellpadding="0" border="1" bgcolor="#b9b9b9" width="100%" class="tblexchange" style="border: 1px solid #ccc;">
+					<tbody>
+						<tr id="tblexchange">
+							<td width="30">Loại</td><td align="center">Ty gia</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div><br class="clear">
+	</div>
+	<div class="blocutilsbot"></div>
+</div>
+<script type="text/javascript" src="http://vnexpress.net/Service/Forex_Content.js"></script>
+<script type="text/javascript" src="http://vnexpress.net/Service/Gold_Content.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	// Exchange content
+	if (vForexs != undefined && vCosts != undefined) {
+		var tblExchange = '';
+		for (var i = 0; i < vForexs.length - 1; i++) {
+			tblExchange += '<tr>'
+							+ '<td>' + vForexs[i] + '</td>'
+							+ '<td>' + vCosts[i] + '</td>'
+							+ '</tr>';
+		}
+		if (tblExchange != '') {
+			$('#tblexchange').after(tblExchange);
+		}
+	}
+
+	// Gold content
+	if (vGoldSbjBuy != undefined && vGoldSbjSell != undefined && vGoldSjcBuy != undefined && vGoldSjcSell != undefined) {
+		var tblGoldName = new Array();
+		var tblGoldBuy = new Array();
+		var tblGoldSell = new Array();
+		// SBJ
+		tblGoldName[0] = 'SBJ';
+		tblGoldBuy[0] = vGoldSbjBuy;
+		tblGoldSell[0] = vGoldSbjSell;
+
+		// SJC
+		tblGoldName[1] = 'SJC'; 
+		tblGoldBuy[1] = vGoldSjcBuy;
+		tblGoldSell[1] = vGoldSjcSell;
+
+		var tblGold = '';
+		for (var i = 0; i < tblGoldName.length; i++) {
+			tblGold += '<tr>'
+						+ '<td>' + tblGoldName[i] + '</td>'
+						+ '<td align="right">' + tblGoldBuy[i] + '</td>'
+						+ '<td align="right">' + tblGoldSell[i] + '</td>'
+						+ '</tr>';
+		}
+		if (tblGold != '') {
+			$('#tblGold').after(tblGold);
+		}
+	}
+
+	// Weather content
+	var cityXml = new Array();
+	var url = 'http://vnexpress.net/ListFile/Weather/';
+	cityXml[1] = 'Sonla.xml';
+	cityXml[3] = 'Haiphong.xml';
+	cityXml[4] = 'Hanoi.xml';
+	cityXml[5] = 'Vinh.xml';
+	cityXml[6] = 'Danang.xml';
+	cityXml[7] = 'Nhatrang.xml';
+	cityXml[8] = 'Pleicu.xml';
+	cityXml[9] = 'HCM.xml';
+	$('#cboWeatherCity').bind('change', function() {
+		vneURL = url + cityXml[this.value];
+		Tomato.Modules.Ultility.Widgets.Weatherforex.loadWeather(vneURL);
+	}).change();
+});	
+
+'Tomato.Modules.Ultility.Widgets.Weatherforex'.namespace();
+Tomato.Modules.Ultility.Widgets.Weatherforex.loadWeather = function(cityUrl) {
+	var data = '{ "city_url": "' + cityUrl + '"}';
+	var response = Tomato.Core.Widget.Loader.queueAction('utility', 'weatherforex', 'load', data, 'weatherContent');
+};
+</script>

@@ -1,0 +1,77 @@
+<!--
+/**
+ * TomatoCMS
+ * 
+ * LICENSE
+ *
+ * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 2 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.gnu.org/licenses/gpl-2.0.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@tomatocms.com so we can send you a copy immediately.
+ * 
+ * @copyright	Copyright (c) 2009-2010 TIG Corporation (http://www.tig.vn)
+ * @license		http://www.gnu.org/licenses/gpl-2.0.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @version		$Id: module_about.dtd 942 2010-01-21 19:41:59Z huuphuoc $
+ */
+-->
+
+<!-- Root element -->
+<!ELEMENT module (name, description, thumbnail, author, email, version, license, requires, install, uninstall, admin)+>
+
+<!-- Name of module -->
+<!ELEMENT name (#PCDATA)>
+
+<!-- Description of module -->
+<!ELEMENT description (#PCDATA)>
+
+<!-- Description attributes:
+- langKey (optional): The value of this key taken from language file, if have, 
+will be shown as description of module in administration dashboard
+-->
+<!ATTLIST description
+	langKey CDATA #IMPLIED>
+
+<!-- The thumbnail URL -->
+<!ELEMENT thumbnail (#PCDATA)>
+
+<!-- Author -->
+<!ELEMENT author (#PCDATA)>
+
+<!-- Email to contact with author -->
+<!ELEMENT email (#PCDATA)>
+
+<!-- Module version -->
+<!ELEMENT version (#PCDATA)>
+
+<!-- Module license -->
+<!ELEMENT license (#PCDATA)>
+
+<!ELEMENT requires (requiredModules)*>
+
+<!-- Required module -->
+<!ELEMENT requiredModules (requiredModule)*>
+<!ELEMENT requiredModule (#PCDATA)>
+<!ATTLIST requiredModule
+	name CDATA #REQUIRED>
+
+<!ELEMENT install (query)*>
+<!ELEMENT uninstall (query)*>
+
+<!-- SQL query. Used when install or uninstall a module -->
+<!ELEMENT query (#PCDATA)>
+
+<!ELEMENT admin (task)*>
+
+<!ELEMENT task (#PCDATA)>
+
+<!-- Task attributes:
+- langKey (required): The value of this key taken from language file, if have, 
+will be shown as description of task in administration dashboard
+- link (required): URL to perform the task
+-->
+<!ATTLIST task
+	langKey CDATA #REQUIRED 
+	link CDATA #REQUIRED>

@@ -1,0 +1,122 @@
+<!--
+/**
+ * TomatoCMS
+ * 
+ * LICENSE
+ *
+ * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 2 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.gnu.org/licenses/gpl-2.0.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@tomatocms.com so we can send you a copy immediately.
+ * 
+ * @copyright	Copyright (c) 2009-2010 TIG Corporation (http://www.tig.vn)
+ * @license		http://www.gnu.org/licenses/gpl-2.0.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @version		$Id: layout.dtd 916 2010-01-21 06:45:33Z huuphuoc $
+ */
+-->
+
+<!--
+This is DTD for layout configuration file.
+Put the following line at the top of layout file:
+<!DOCTYPE layout SYSTEM "http://schemas.tomatocms.com/dtd/layout.dtd">
+-->
+
+<!-- ========== Root element =============================================== -->
+<!--
+Layout contain one or many container(s) 
+-->
+<!ELEMENT layout (container)+>
+
+<!-- ========== Container ================================================== -->
+<!-- Each container can contain zero or many containers/widgets -->
+<!ENTITY % Block "(container | widget | defaultOutput)*">
+<!ELEMENT container (%Block;)>
+
+<!-- Container attributes:
+- cols (optional): Define the number of columns. This attribute is required in most cases.
+If you build template which support mobile devices, you don't have to define this value
+- position: Position of container in the row it belong to.
+Here, row is the parent container with full of 12 columns.
+The position can take one of two values: 
+"first" if the container is the first container in row, or
+"last" if the container is the last one in row.
+This attribute is optional
+- cssClass (optional): CSS class of container
+-->
+<!ATTLIST container
+	cols CDATA #IMPLIED
+  	position (first|last) #IMPLIED
+  	cssClass CDATA #IMPLIED>
+  
+<!-- ========== Widget ===================================================== -->
+
+<!-- Default output. 
+This is all what user will see on web page without widgets
+-->
+<!ELEMENT defaultOutput EMPTY>
+
+<!-- Each widget may need some resources -->
+<!ELEMENT widget (title*,resources*, params*,cache*)>
+
+<!-- Widget attributes:
+- module (required): Name of module that widget belong to
+- name (required): Name of widget
+- load (optional): The loading method. Each widget can be loaded by php (default) or ajax
+- cssClass (optional): CSS class of widget
+-->
+<!ATTLIST widget 
+  	module CDATA #REQUIRED
+  	name CDATA #REQUIRED
+  	load (php|ajax) #IMPLIED
+  	cssClass CDATA #IMPLIED>
+
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT resources (resource*)>
+<!ELEMENT resource (#PCDATA)>
+
+<!-- Resource attributes:
+- type (required): The resource type. Take value javascript (or css)
+- src (required): The source of resource.
+Its value can contain pre-defined string {APP_URL} or {APP_STATIC_SERVER}.
+{APP_URL} will be replaced with URL of website
+{APP_STATIC_SERVER} is URL to static server, which contain static resources as javascript or css files
+-->
+<!ATTLIST resource
+  	type (javascript|css) #REQUIRED
+  	src CDATA #REQUIRED>
+
+<!ELEMENT params (param*)>
+<!ELEMENT param (value*)>
+
+<!-- Param attributes:
+- name (required): Name of param
+- type (optional): If this param is used, it has to be "global" that means the value of param will be
+determined from URL request automatically
+- from (optional): This param is used if only if the type attribute is defined.
+This param define the name of request param which the param will take value from
+-->
+<!ATTLIST param
+  	name CDATA #REQUIRED
+  	type (global) #IMPLIED
+  	from CDATA #IMPLIED>
+
+<!-- Value of param 
+This is not required if the param value will be taken from request 
+(the "type" attribute defined as "global") 
+-->
+<!ELEMENT value (#PCDATA)>
+
+<!-- Cache element -->
+<!ELEMENT cache (#PCDATA)>
+
+<!-- Cache attributes:
+- lifetime (required): Cache lifetime in seconds
+-->
+<!ATTLIST cache
+  	lifetime CDATA #REQUIRED>
+
+
+

@@ -1,0 +1,16 @@
+<div class="box-right mgBottom" style="padding-top: 10px;">
+	<div class="box-header"><?php echo $this->translator()->widget('popular'); ?></div>
+	<div class="box-body">
+		<div class="box-topic-body pdForcus">
+		<?php if ($this->stickyArticles != null) : ?>
+			<?php foreach ($this->stickyArticles as $index => $article) : ?>
+			<div class="topic-news">
+				<?php if ($article->image_square != null) : ?><a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>"><img align="left" style="width: 60px; border-width: 0px;" alt="<?php echo $this->escape($article->title); ?>" src="<?php echo $article->image_square; ?>" class="topic-news-image" id="ctl05_rptItems_ctl04_imgv"></a><?php endif; ?>
+				<a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>"> <?php echo $this->escape($article->title); ?></a>
+				<br class="clear">
+			</div>
+			<?php endforeach; ?>
+		<?php endif; ?>	
+		</div>
+	</div>
+</div>

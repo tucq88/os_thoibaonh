@@ -1,0 +1,11 @@
+// =============================================================================
+// TomatoCMS hooks
+// $Id: hook.txt 316 2009-12-16 04:19:38Z huuphuoc $
+// ============================================================================= 
+
+### 2009-09-29 ###
+- Added: News_Article_Details_FormatContent hook: Format the content of article
+
+### 2009-09-28 ###
+- Added: Core_Auth_Login_LoginSuccess hook: Will be executed when user logged in successfully
+- Added: Core_Auth_Login_LogoutSuccess hook: Will be executed when user logged out successfully 

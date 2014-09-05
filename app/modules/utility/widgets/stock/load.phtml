@@ -1,0 +1,32 @@
+<ul class="st-ul">
+	<li class="hd-bdl fl">&nbsp;</li>
+	<li class="hd-co fl"><p class="hd-tt">Mã CK</p></li>
+	<li class="hd-sp fl">&nbsp;</li>
+	<li class="hd-tc fl"><p class="hd-tt">TC</p></li>
+	<li class="hd-sp fl">&nbsp;</li>
+	<li class="hd-tra fl">
+		<ul class="st-ul">
+			<li class="hd-med fl">Khớp lệnh</li>
+			<li class="hd-sp2 fl">&nbsp;</li>
+			<li class="hd-pra fl">Giá</li>
+			<li class="hd-sp fl">&nbsp;</li>
+			<li class="hd-pra fl">KL</li>
+		</ul>
+	</li>
+	<li class="hd-sp fl">&nbsp;</li>
+	<li class="hd-ud fl"><p class="hd-tt">+/-</p></li>
+	<li class="hd-bdr fl">&nbsp;</li>
+</ul>
+<div class="tUtilityStockLoad" style="height: 250px; overflow: auto;">
+<?php echo $this->content; ?>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.tUtilityStockLoad').find('table:first').attr('border', '1');
+	$('.tUtilityStockLoad').find('table td').each(function() {
+		var self = this;
+		$(self).css('padding', '4px')
+			.css('border-color', '#6c7170');
+	});
+});
+</script>

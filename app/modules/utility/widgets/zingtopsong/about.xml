@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE widget SYSTEM "http://schemas.tomatocms.com/dtd/widget_about.dtd">
+<widget>
+	<name>Zingtopsong</name>
+	<title>Zing top song</title>
+	<module>utility</module>
+	<description>Show top song on mp3.zing.vn</description>
+	<thumbnail></thumbnail>
+	<author>Ninh Gio`</author>
+	<email>ninhgio@yahoo.com</email>
+	<version>2.0.5</version>
+	<license>free</license>
+	<params>
+		<param name="url">
+			<description>Zing top song URL</description>
+		</param>
+		<param name="limit">
+			<description>Number of songs displayed</description>
+		</param>
+	</params>
+	<resources>
+		<resource type="css" src="{APP_STATIC_SERVER}/skin/zing/default/hotsong.css" />
+	</resources>
+</widget>

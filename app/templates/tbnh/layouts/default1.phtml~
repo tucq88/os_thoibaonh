@@ -1,0 +1,120 @@
+<?php 
+/**
+ * TomatoCMS
+ * 
+ * LICENSE
+ *
+ * This source file is subject to the GNU GENERAL PUBLIC LICENSE Version 2 
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://www.gnu.org/licenses/gpl-2.0.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@tomatocms.com so we can send you a copy immediately.
+ * 
+ * @copyright	Copyright (c) 2009-2010 TIG Corporation (http://www.tig.vn)
+ * @license		http://www.gnu.org/licenses/gpl-2.0.txt GNU GENERAL PUBLIC LICENSE Version 2
+ * @version		$Id: default.phtml 2006 2010-04-02 07:17:27Z huuphuoc $
+ */
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"<?php if ($this->APP_LANG_RTL) : ?> dir="rtl"<?php endif; ?>>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="robots" content="index, follow" />
+    <?php $url_index=$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']; if( $url_index == 'thoibaonganhang.vn/' || $url_index == 'thoibaonganhang.vn/index.php'): ?> <meta http-equiv="refresh" content="90" > <?php endif; ?>
+<!--    <link rel="stylesheet" type="text/css" href="<?php echo $this->APP_STATIC_SERVER; ?>/css/960/<?php if ($this->APP_LANG_RTL) : ?>all-rtl.min.css<?php else : ?>all.min.css<?php endif; ?>" />-->
+    <link rel="stylesheet" type="text/css" href="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/default.css" />
+    <script type="text/javascript" language="javaScript">
+    	var SKIN_URL = '<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>';
+    </script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/jquery/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/jquery.ajaxq/jquery.ajaxq.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/jquery.json/jquery.json.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/tomato/namespace.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/tomato/core/widget.loader.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_URL; ?>/ad/zone/load/"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/tomato/ad/banner.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/tomato/ad/zone.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/tomato/ad/loader.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/swfobject/swfobject.js"></script>
+    <!--  -->
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/library.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/vne.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/flashMedia.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/adLib.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/ajaxRequest.js"></script>
+    <script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/vietUni.js"></script>
+    <!--<script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/js/arrMenu.js"></script> -->
+    <script type="text/javascript" language="javaScript">
+		var PAGE_SITE=0;
+		var PAGE_FOLDER=0;	
+		var PAGE_ID=0;	
+		var DOMESTIC_IP=1;	
+		setTypingMode(1);
+	</script>
+    <!--  -->
+    <?php echo $this->headMeta(); ?>
+    <?php echo $this->headTitle(); ?>
+    <?php echo $this->headScript(); ?>
+	<?php echo $this->headLink(); ?>
+	<script type="text/javascript">
+	Tomato.Core.Widget.Loader.baseUrl = '<?php echo $this->baseUrl(); ?>';
+	</script>
+	<!--[if IE 6]>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/ie.css" />
+	<style type="text/css">
+        #header{margin-bottom: 5px;}
+        #topbannerEH {padding-top: -38px !important;}
+       #topnews{width: 690px;}
+       .t_news_searchbox div .ac_input{float: left; margin-top: 5px;}
+       .t_news_searchbox div {width: 205px;}
+       .container_12 .grid_2{margin-left: -25px;}
+	img, div, a, input { behavior: url("<?php echo $this->APP_STATIC_SERVER; ?>/js/iepngfix/iepngfix.htc") }
+ 	</style>
+ 	<script type="text/javascript" src="<?php echo $this->APP_STATIC_SERVER; ?>/js/iepngfix/iepngfix_tilebg.js"></script>
+	<![endif]-->
+	<!--[if lte IE 7]>
+        <style type="text/css">
+        #t_g_container_4 {margin: 10px 0;}
+	img, div, a, input { border: 0; behavior: url("<?php echo $this->APP_STATIC_SERVER; ?>/js/iepngfix/abc.htc") }
+ 	</style>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/ie7.css" />
+	<?php if ($this->APP_LANG_RTL) : ?>
+	<link rel="stylesheet" type="text/css" href="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/default-rtl-ie.css" />
+	<?php endif; ?>
+	<![endif]-->
+
+    <!--[if lte IE 8]>
+        <style type="text/css">
+        #t_g_ad_h2 a img {
+        width: 356px;
+        height: 86px;
+       }
+    </style>
+    <![endif]-->
+
+</head>
+<body>
+	<div id="outter" class="container_12">
+		<div style="width: 1000px;" id="divMove">
+			<div class="fpr2">
+				<div id="header">
+					<?php echo $this->render('_header.phtml'); ?>
+				</div>
+				<?php echo $this->layoutLoader(); ?>
+				<div id="footer" style="clear: both;">
+					<?php echo $this->render('_footer.phtml'); ?>
+				</div>
+			</div>
+		</div>
+	</div>	
+<?php
+/**
+ * @since 2.0.3
+ */
+Tomato_Core_Hook_Registry::getInstance()->executeAction('Core_PageLoaded');
+
+?>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<?php if ($this->categories != null) : ?>
+<div class="content-center fl">	
+	<div class="folder">
+		<div class="folder-title">
+		    <div class="folder-activeleft fl"></div>
+		    <div class="folder-active fl"><a class="link-folder" href="<?php echo $this->url($this->categories[0]->getProperties(), 'news_article_category'); ?>"><?php echo $this->escape($this->categories[0]->name); ?></a></div>
+		    <div class="folder-activeright fl"></div>
+		    <div class="subfolder fl">
+		    	<?php for ($i = 1; $i < count($this->categories); $i++) : ?>
+				<a href="<?php echo $this->url($this->categories[$i]->getProperties(), 'news_article_category'); ?>" class="link-subfolder"><?php echo $this->escape($this->categories[$i]->name); ?></a><?php if ($i < count($this->categories) - 1) : ?>&nbsp;|&nbsp;<?php endif; ?>
+				<?php endfor; ?>
+			</div>
+		    <div class="folder-titleright fr"></div>
+		</div>
+		<?php if (($articles = $this->latestArticles($this->categories[0]->category_id, $this->limit)) != null && count($articles) > 0) : ?>
+		<div id="tdHomeFolder18" class="folder-content">
+			<div class="folder-topnews fl">
+				<?php if ($articles[0]->image_general) : ?><a href="<?php echo $this->url($articles[0]->getProperties(), 'news_article_details'); ?>"><img class="img-subject fl" alt="" src="<?php echo $articles[0]->image_general; ?>"></a><?php endif; ?><p><a class="link-title" href="<?php echo $this->url($articles[0]->getProperties(), 'news_article_details'); ?>"><?php echo $this->escape($articles[0]->title); ?></a></p>
+				<?php echo $articles[0]->description; ?>
+			</div>
+			<div class="folder-othernews fl">
+				<?php if (count($articles) >= 2) : ?>
+				<div class="other-folder fl">
+					<?php if ($articles[1]->image_square != null) : ?><a href="<?php echo $this->url($articles[1]->getProperties(), 'news_article_details'); ?>" class="link-othernews"><img src="<?php echo $articles[1]->image_square; ?>" class="img-other fl" alt=""></a><?php endif; ?><a href="<?php echo $this->url($articles[1]->getProperties(), 'news_article_details'); ?>" class="link-othernews"><?php echo $this->escape($articles[1]->title); ?></a>
+				</div>
+				<?php endif; ?>
+				<?php if (count($articles) > 2) : ?>
+				<div class="fl">
+					<ul>
+						<?php for ($i = 2; $i < count($articles); $i++) : ?>
+						<li><a href="<?php echo $this->url($articles[$i]->getProperties(), 'news_article_details'); ?>" class="link-othernews"><?php echo $this->escape($articles[$i]->title); ?></a></li>
+						<?php endfor; ?>
+					</ul>
+				</div>
+				<?php endif; ?>
+			</div>
+			<div class="rss fr">
+				<a href="<?php echo $this->url($this->categories[0]->getProperties(), 'news_rss_category'); ?>" class="link-rss">RSS <img src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/rss.gif" alt="" class="img-rss"></a>
+			</div>
+		</div>
+		<?php endif; ?>
+		<div class="folder-bottom"></div>
+	</div>
+</div>
+<?php endif; ?>

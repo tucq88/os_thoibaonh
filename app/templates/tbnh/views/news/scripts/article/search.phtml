@@ -1,0 +1,243 @@
+<style>
+.nsHighLights {
+	color: #990000;
+	padding: 0 0 0 0;
+}
+
+.nsTitle {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: none;
+}
+
+.nsTitle:hover {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+	color: #000000;
+	text-decoration: underline;
+}
+
+.nsLead {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #6D6D6D;
+}
+
+.nsDateTime {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #6C6C6C;
+	font-style: italic;
+}
+
+.nsMoreInfo {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #188729;
+	text-decoration: underline;
+}
+
+.nsPageNext {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #6C6C6C;
+	text-decoration: underline;
+}
+
+.nsPageIndex {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #6C6C6C;
+}
+
+.nsPageCurrent {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #0E2F4E;
+	text-decoration: underline;
+}
+
+.nsLightBorder {
+	border: #E0E1E3 1px solid;
+}
+
+.nsSearchKeyWord {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.nsSearchResultCount {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: bold;
+}
+
+.nsText {
+	font-family: arial, tahoma;
+	font-size: 9pt;
+}
+
+.nsTextSmall {
+	font-family: arial, tahoma;
+	font-size: 8pt;
+	color: #484745;
+}
+
+.nsButton {
+	border: #aaaaaa 1px solid;
+	font-weight: bold;
+	font-size: 8pt;
+	font-family: Arial, tahoma;
+	height: 20px;
+	background-color: #ffffff;
+}
+
+.nsTextBox {
+	border: #aaaaaa 1px solid;
+	font-size: 10pt;
+	width: 100px;
+	font-family: Arial, tahoma;
+	height: 16px;
+}
+
+.frm-search,.frm-result {
+	width: 100%;
+	margin-bottom: 10px;
+	float: left;
+	overflow: hidden;
+}
+
+.frm-search p {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.frm-search ul {
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+}
+
+.li1,.li2,.li3,.li4,.li5,.li6 {
+	list-style-type: none;
+	float: left;
+	padding-bottom: 5px;
+}
+
+.li1 {
+	width: 50%;
+}
+
+.li2 {
+	width: 100%;
+}
+
+.li3 {
+	width: 12%;
+}
+
+.li4 {
+	width: 88%;
+}
+
+.li5 {
+	width: 60%;
+}
+
+.li6 {
+	width: 40%;
+}
+
+.button {
+	padding-top: 1px;
+}
+
+.frm-detail {
+	width: 690px;
+	border: 1px solid #e0e1e3;
+	overflow: hidden;
+}
+
+.frm-header {
+	width: 690px;
+	padding: 2px;
+	background-color: #e4e8f1;
+}
+
+.frm-page {
+	width: 690px;
+	padding: 2px;
+	background-color: #f0f0f0;
+	font-family: arial, tahoma;
+	font-size: 9pt;
+	font-weight: normal;
+	color: #6C6C6C;
+}
+
+.frm-body {
+	width: 100%;
+	background-color: #ffffff;
+	padding: 5px 0px;
+}
+
+.imgsearch {
+	padding: 0px 10px;
+}
+
+.fleft {
+	text-align: left;
+	padding-bottom: 0px;
+}
+
+.fright {
+	text-align: right;
+	padding-bottom: 0px;
+}
+
+.col {
+	background: #D6DBE3;
+}
+</style>
+<script src="http://search.vnexpress.net/Search/inc/Highlight.js" language="javaScript" type="text/javascript"></script>
+<div class="content-center fl">
+	<div style="float: left; width: 100%; text-align: left;">
+	  <div class="frm-search"></div>
+		<div class="frm-result"><br>
+			<div class="frm-detail fl">
+				<div class="frm-header fl">
+					<font class="nsSearchResultCount">0</font> kết quả tìm kiếm 
+				</div>
+				<div class="frm-page fl"></div>
+				<div id="tblSearch" class="frm-body fl"></div>
+				<div class="frm-page fl"></div>
+				
+				<div id="tblSearch" class="frm-body fl">
+					<?php foreach ($this->articles as $index => $article) : ?>
+					<div class="folder-news">
+						<?php if ($article->image_general != null) : ?>
+						<a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>"><img alt="" src="<?php echo $article->image_general; ?>" class="img-subject fl"></a>
+						<?php endif; ?>
+						<p><a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>" class="link-title"><?php echo $article->title; ?></a><br>
+						<label class="nsDateTime"><?php echo date('d/m/Y H:i', strtotime($article->activate_date)); ?></label></p>
+						<?php echo $article->description; ?>
+					</div>
+					<?php endforeach; ?>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script language="Javascript">
+		//searchPrompt('',true);
+		document.getElementById('num').value = 10;
+	</script>
+</div>

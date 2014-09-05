@@ -1,0 +1,11 @@
+<table width="100%" cellspacing="3" cellpadding="0" border="0">
+	<tbody>
+		<tr height="20"><td style="font-size: 11px;" class="Time" colspan="2"><b><?php echo $this->escape($this->channel['NAME']); ?> <?php echo $this->escape($this->date); ?></b></td>
+		</tr><tr height="1"><td bgcolor="#666666" colspan="2"></td></tr>
+		<?php if (count($this->data) > 0) : ?>
+		<?php for ($i = 0; $i < count($this->data); $i++) : ?>
+		<tr><td width="15" valign="top" align="center" style="" class="Image"><b><?php echo $this->escape($this->data[$i]->TVTime); ?></b></td><td width="100%" valign="top" class="Image"><font color="#06175d" style="font: 11px arial;"><?php echo $this->escape($this->data[$i]->Desc); ?></font></td></tr>
+		<?php endfor; ?>
+		<?php endif; ?>
+	</tbody>
+</table>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE widget SYSTEM "http://schemas.tomatocms.com/dtd/widget_about.dtd">
+<widget>
+	<name>Topic</name>
+	<title>Topic articles</title>
+	<module>news</module>
+	<description>Show articles from keyword</description>
+	<thumbnail></thumbnail>
+	<author>Ninh Gio`</author>
+	<email>ninhgio@yahoo.com</email>
+	<version>2.0.5</version>
+	<license>free</license>
+	<params>
+		<param name="tag_id">
+			<description>Id of category</description>
+		</param>
+		<param name="limit">
+			<description>Number of articles</description>
+		</param>
+	</params>
+	<resources></resources>
+</widget>

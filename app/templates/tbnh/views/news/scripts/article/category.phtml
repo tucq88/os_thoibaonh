@@ -1,0 +1,42 @@
+<?php
+$this->headTitle($this->category->name); 
+?>
+<div class="content-center fl">
+	<?php for ($i = 0; $i < min(count($this->articles), $this->limit); $i++) : ?>
+	<?php if ($i == 0) : ?>
+	<div class="folder-top">
+		<?php if ($this->articles[$i]->image_small) : ?><a href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>"><img alt="" src="<?php echo $this->articles[$i]->image_small; ?>" class="img-topsubject fl"></a><?php endif; ?>
+		<p><a class="link-topnews" href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>"><?php echo $this->escape($this->articles[$i]->title); ?></a>
+		<br><label class="item-time"><?php echo date('H:i', strtotime($this->articles[$i]->activate_date)); ?></label><label class="item-date">&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo date('d/m/Y', strtotime($this->articles[$i]->activate_date)); ?></label></p>
+		<?php echo $this->articles[$i]->description; ?>
+	</div>
+	<div class="folder-bottom2">
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-bottomleft.gif"></div>
+		<div class="folder-bottomcenter fl">&nbsp;</div>
+		<div class="fr"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-bottomright.gif"></div>
+	</div>
+	<?php else : ?>
+	<div class="folder-news">
+		<?php if ($this->articles[$i]->image_general) : ?><a href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>"><img alt="" src="<?php echo $this->articles[$i]->image_general; ?>" class="img-subject fl"></a><?php endif; ?>
+		<p><a class="link-title" href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>"><?php echo $this->escape($this->articles[$i]->title); ?></a>
+		<br><label class="item-time"><?php echo date('H:i', strtotime($this->articles[$i]->activate_date)); ?></label><label class="item-date">&nbsp;&nbsp;|&nbsp;&nbsp;<?php echo date('d/m/Y', strtotime($this->articles[$i]->activate_date)); ?></label></p>
+		<?php echo $this->articles[$i]->description; ?>
+	</div>
+	<?php endif; ?>
+	<?php endfor; ?>
+	<?php if (count($this->articles) > $this->limit) : ?>
+	<div class="folder-news">
+		<div class="othernews-header"><div class="othernews-title fl"><?php echo $this->escape($this->translator('article_category_other')); ?></div></div>
+		<div class="othernews">
+			<ul>
+				<?php for ($i = $this->limit; $i < count($this->articles); $i++) : ?>
+				<li><a class="link-othernews" href="<?php echo $this->url($this->articles[$i]->getProperties(), 'news_article_details'); ?>"><?php echo $this->escape($this->articles[$i]->title); ?></a><span style="color: rgb(144, 144, 144);">&nbsp;(<?php echo date('d/m/Y', strtotime($this->articles[$i]->activate_date));?>)</span></li>
+				<?php endfor; ?>
+			</ul>
+		</div>
+	</div>
+	<?php endif; ?>
+</div>	
+<?php if ($this->numArticles > ($this->perPage * $this->pageIndex)) : ?>
+<div class="view_more" id="o_Pagesize"><a href="<?php echo $this->url(array('category_id' => $this->category->category_id, 'slug' => $this->category->slug, 'page_index' => $this->pageIndex + 1), 'news_article_category_pager'); ?>"><img src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/ico_arrow05.gif" alt=""> <?php echo $this->translator('article_category_next_page'); ?></a></div>
+<?php endif; ?>

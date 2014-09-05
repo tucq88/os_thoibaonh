@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE template SYSTEM "http://schemas.tomatocms.com/dtd/template_about.dtd">
+<template>
+	<name>tbnh</name>
+	<description>News Vnexpress.net template</description>
+	<thumbnail></thumbnail>
+	<author>UNNET</author>
+	<email>kyo.kunvk@gmail.com</email>
+	<version>2.0.4</version>
+	<license>free</license>
+	<selectable>true</selectable>
+	<skins>
+		<skin name="default">
+			<color>#F1F1F1</color>
+			<description>Default skin</description>
+		</skin>
+	</skins>
+	<install>
+	</install>
+</template>

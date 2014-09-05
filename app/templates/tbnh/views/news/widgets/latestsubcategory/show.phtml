@@ -1,0 +1,40 @@
+<?php if (count($this->categories) > 0) : ?>
+<?php foreach ($this->categories as $index => $category) : ?>
+	<?php if ($index > 0 && $this->categoryId != $category->category_id) : ?>
+		<div class="box-item">
+			<div class="list-item-header fl">
+				<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-activeleft2.gif"></div>
+				<div class="folder-active2 fl">
+					<script language="javascript" type="text/javascript">writeListItemTitle(<?php echo $category->category_id?>);</script>
+				</div>
+				<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-activeright2.gif"></div>
+				<div class="fr"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-topright.gif"></div>
+			</div>
+			<div id="ListItem144" class="fl">
+			<?php if (($articles = $this->latestArticles($category->category_id, $this->limit, true)) != null && count($articles) > 0) : ?>
+			<?php for ($i = 0 ; $i < count($articles); $i++) : ?>
+				<?php if ($i == 0) : ?>		
+				<div class="box-middle1 list-item5 fl">
+				<?php elseif ($i % 2 == 0) : ?>
+				</div><div class="box-middle1 list-item5 fl">
+				<?php endif; ?>	
+					<div class="list-item5-content fl">
+						<?php if ($articles[$i]->image_square != null) : ?><a href="<?php echo $this->url($articles[$i]->getProperties(), 'news_article_details'); ?>"><img alt="" class="fl" src="<?php echo $articles[$i]->image_square; ?>"></a><?php endif; ?>
+						<a href="<?php echo $this->url($articles[$i]->getProperties(), 'news_article_details'); ?>"><?php echo $this->escape($articles[$i]->title); ?></a>	
+					</div>
+					<?php if ($i % 2 == 0 && $i < count($articles) - 1) : ?>
+					<img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/sep-listitem5.gif" class="img-sep-listitem5 fl">
+					<?php endif; ?>	
+			<?php endfor; ?>
+			</div>
+			<?php endif; ?>
+			</div>
+			<div class="folder-bottom listitem-bottom fl">
+				<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-bottomleft.gif"></div>
+				<div class="listitem-bottomcenter fl">&nbsp;</div>
+				<div class="fr"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-bottomright.gif"></div>
+			</div>
+		</div>
+	<?php endif; ?>
+<?php endforeach; ?>
+<?php endif; ?>

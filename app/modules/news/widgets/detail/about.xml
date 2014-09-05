@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE widget SYSTEM "http://schemas.tomatocms.com/dtd/widget_about.dtd">
+<widget>
+	<name>Detail</name>
+	<title>Detail</title>
+	<module>news</module>
+	<description>Article detail</description>
+	<thumbnail></thumbnail>
+	<author>Ninh Gio`</author>
+	<email>ninhgio@yahoo.com</email>
+	<version>2.0.4</version>
+	<license>free</license>
+	<params>
+		<param name="article_id">
+			<description>Id of article</description>
+		</param>
+	</params>
+	<resources></resources>
+</widget>

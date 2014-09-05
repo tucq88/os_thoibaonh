@@ -1,0 +1,9 @@
+; $Id: todo_when_release.txt 1384 2010-03-01 09:48:53Z huuphuoc $
+
+When release new version:
+1) Update version number in app/core/Version.php
+2) Remove following directories:
+- deploy
+- doc
+3) Open api.tomatocms.com:
+get_version.php ==> lastest version

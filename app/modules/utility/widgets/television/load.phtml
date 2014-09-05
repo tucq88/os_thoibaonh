@@ -1,0 +1,20 @@
+<div>
+	<div style="padding-top: 5px; font-weight: bold; font-size: 13px;">
+		<?php echo $this->escape($this->channel['NAME']); ?> <?php echo $this->escape($this->date); ?>
+	</div>
+	<hr style="padding: 0; margin-bottom: 5px;"/>
+	<div<?php if (count($this->data) > 0) : ?> style="height: 200px; overflow: auto;"<?php endif; ?>>
+		<?php if (count($this->data) > 0) : ?>
+		<table>
+			<?php for ($i = 0; $i < count($this->data); $i++) : ?>
+			<tr>
+				<td style="width: 15px;"><b><?php echo $this->escape($this->data[$i]->TVTime); ?></b></td>
+				<td style="padding-left: 5px; color: #06175d;"><?php echo $this->escape($this->data[$i]->Desc); ?></td>
+			</tr>
+			<?php endfor; ?>
+		</table>
+		<?php else : ?>
+		<?php echo $this->translator()->widget('not_found_data'); ?>
+		<?php endif; ?>
+	</div>
+</div>	

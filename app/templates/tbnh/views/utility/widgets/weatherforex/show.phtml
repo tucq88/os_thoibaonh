@@ -1,0 +1,75 @@
+<div class="box-item">
+	<div class="fl">
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/box-topleft1.gif"></div>
+		<div class="box-topcenter1 fl">&nbsp;</div>
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/box-topright1.gif"></div>
+	</div> 
+	<div class="box-middle1 box-weather fl">
+		<div class="weather fl">
+			<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/cloud.gif" class="img-icon">&nbsp;&nbsp;<label class="link-folder">Thời tiết</label></div>                                
+			<div class="fl">
+				<form action="#" method="post" id="frmWeather">
+					<p>
+						<img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/search.gif" class="fl">
+						<select class="slt-weather" id="cboWeather">
+							<option value="1">Sơn La</option>
+							<!--<option value="2">Vi&#7879;t Tr&#236;</option>-->
+							<option value="3">Hải Phòng</option>
+							<option selected="selected" value="4">Hà Nội</option>
+							<option value="5">Vinh</option>
+							<option value="6">Đà Nẵng</option>
+							<option value="7">Nha Trang</option>
+							<option value="8">Pleiku</option>
+							<option value="9">TP HCM</option>
+						</select>
+					</p>
+					<div id="weatherContent"></div>
+				</form>
+			</div>                                 
+		</div>
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/sep-boxweather.gif"></div>
+		<div class="goldprice fl">
+			<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/money.gif" class="img-icon">&nbsp;&nbsp;<label class="link-folder">Giá vàng 9999</label></div>
+			<div class="fl">
+				<div class="gold-price fl" id="eGold"></div>
+				<div style="width: 127px;" class="fl"><label style="font: italic 10px arial; color: rgb(145, 144, 144);">(Nguồn: <a target="_blank" href="http://www.sacombank-sbj.com"><img alt="Sacombank" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/logoSb.gif" style="border: 0px none; vertical-align: middle; width: 80px; height: 9px;"></a>)</label></div>
+				<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/circle-chart.gif" class="img-icon">&nbsp;&nbsp;<label class="link-folder">Tỷ giá</label></div>
+				<div class="forex-rate fl" id="eForex"></div>
+				<div class="fl"><label style="font: italic 10px arial; color: rgb(5, 50, 79);">(Nguồn: <a target="_blank" href="http://www.eximbank.com.vn"><img src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/logo-EXIM.gif" style="border: 0px none; vertical-align: middle;"></a>)</label></div>				
+			</div>
+		</div>
+	</div>   
+	<div class="fl">                    
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/box-bottomleft1.gif"></div>
+		<div class="box-bottomcenter1 fl">&nbsp;</div>
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/box-bottomright1.gif"></div>
+	</div>
+	<script src="http://vnexpress.net/Service/Gold_Content.js" language="javascript" type="text/javascript"></script>
+	<script src="http://vnexpress.net/Service/Forex_Content.js" language="javascript" type="text/javascript"></script>
+	<script language="javascript" type="text/javascript">ShowGoldPrice();ShowForexRate();</script>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	// Weather content
+	var cityXml = new Array();
+	var url = 'http://vnexpress.net/ListFile/Weather/';
+	cityXml[1] = 'Sonla.xml';
+	cityXml[3] = 'Haiphong.xml';
+	cityXml[4] = 'Hanoi.xml';
+	cityXml[5] = 'Vinh.xml';
+	cityXml[6] = 'Danang.xml';
+	cityXml[7] = 'Nhatrang.xml';
+	cityXml[8] = 'Pleicu.xml';
+	cityXml[9] = 'HCM.xml';
+	$('#cboWeather').bind('change', function() {
+		vneURL = url + cityXml[this.value];
+		Tomato.Modules.Ultility.Widgets.Weatherforex.loadWeather(vneURL);
+	}).change();
+});
+
+'Tomato.Modules.Ultility.Widgets.Weatherforex'.namespace();
+Tomato.Modules.Ultility.Widgets.Weatherforex.loadWeather = function(cityUrl) {
+	var data = '{ "city_url": "' + cityUrl + '"}';
+	var response = Tomato.Core.Widget.Loader.queueAction('utility', 'weatherforex', 'load', data, 'weatherContent');
+};
+</script>

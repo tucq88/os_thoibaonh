@@ -1,0 +1,26 @@
+<div style="clear: both; border: 1px #F47D21 solid; padding: 5px;">
+	<div style="font-weight: bold; font-size: 14px; padding-bottom: 5px;"><?php echo $this->escape($this->translator()->widget('title')); ?></div>
+	<div>
+		<?php if (count($this->channels) > 0) : ?>
+		<select id="tUtilityTelevisionChannel" name="tUtilityTelevisionChannel">
+			<?php for ($i = 0; $i < count($this->channels); $i++) : ?>
+			<option value="<?php echo $i + 1; ?>"><?php echo $this->escape($this->channels[$i]); ?></option>
+			<?php endfor; ?>
+		</select>
+		<?php endif; ?>
+	</div>
+	<div id="tUtilityTelevisionContent"></div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#tUtilityTelevisionChannel').bind('change', function() {
+		var url = 'http://vnexpress.net/ListFile/iTV/' + this.value + '.xml';
+		Tomato.Modules.Ultility.Widgets.Television.loadChannel(url);		
+	}).change();
+});
+'Tomato.Modules.Ultility.Widgets.Television'.namespace();
+Tomato.Modules.Ultility.Widgets.Television.loadChannel = function(url) {
+	var data = '{ "url": "' + url + '"}';
+	var response = Tomato.Core.Widget.Loader.queueAction('utility', 'television', 'load', data, 'tUtilityTelevisionContent');
+};
+</script>

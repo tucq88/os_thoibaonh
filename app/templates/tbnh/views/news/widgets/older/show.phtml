@@ -1,0 +1,17 @@
+<?php if ($this->articles->count() > 0) : ?>
+<div class="content-center fl">	
+	<div class="folder-news">
+		<div class="othernews-header">
+			<div class="othernews-title fl"><?php echo $this->translator()->widget('older_articles'); ?></div>
+			<div style="margin-bottom: 5px;" class="fr txtr"><a class="Time" href="JavaScript:history.go(-1)">[<b><?php echo $this->translator()->widget('back'); ?></b>]</a></div>
+		</div>
+		<div class="othernews">
+			<ul>
+				<?php foreach ($this->articles as $index => $article) : ?>
+				<li><a class="link-othernews" href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>"><?php echo $this->escape($article->title); ?></a><span style="color: rgb(144, 144, 144);">&nbsp;(<?php echo date('d/m/Y', strtotime($article->activate_date)); ?>)</span></li>
+				<?php endforeach; ?>
+			</ul>
+		</div>
+	</div>
+</div>
+<?php endif; ?>

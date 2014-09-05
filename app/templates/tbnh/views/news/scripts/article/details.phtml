@@ -1,0 +1,15 @@
+<?php 
+$this->headTitle($this->article->title);
+?>
+<div class="content-center fl">
+	<div class="content">
+		<div cpms_content="true" style="overflow: hidden;">
+			<p class="Title"><?php echo $this->escape($this->article->title); ?></p>
+			<p class="Lead"><?php echo $this->article->description; ?></p>
+			<?php echo utf8_decode($this->article->content); ?>
+			<?php if ($this->article->author != null) : ?>
+			<p align="right" class="normal"><?php echo $this->article->author; ?></p>
+			<?php endif; ?>
+		</div>
+	</div>
+</div>	

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE widget SYSTEM "http://schemas.tomatocms.com/dtd/widget_about.dtd">
+<widget>
+	<name>Stock</name>
+	<title>Stock table</title>
+	<module>utility</module>
+	<description>Show stock table from vnexpress.net</description>
+	<thumbnail></thumbnail>
+	<author>Ninh Gio`</author>
+	<email>ninhgio@yahoo.com</email>
+	<version>2.0.4</version>
+	<license>free</license>
+	<params>
+	</params>
+	<resources>
+		<resource type="css" src="{APP_STATIC_SERVER}/js/jquery.ui/themes/base/ui.all.css" />
+		<resource type="javascript" src="{APP_STATIC_SERVER}/js/jquery.ui/ui.core.js" />
+		<resource type="javascript" src="{APP_STATIC_SERVER}/js/jquery.ui/ui.tabs.js" />
+	</resources>
+</widget>

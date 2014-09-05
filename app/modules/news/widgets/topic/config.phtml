@@ -1,0 +1,8 @@
+<?php echo $this->translator()->widget('config_select_tag'); ?><br />
+<select name="tag_id" class="t_widget_input">
+<?php foreach ($this->tags as $tag) : ?>
+	<option value="<?php echo $tag->tag_id; ?>"><?php echo $this->escape($tag->tag_text); ?></option>
+<?php endforeach; ?>
+</select>
+<br /><?php echo $this->translator()->widget('config_num_articles'); ?><br />
+<input type="text" class="t_widget_input" name="limit" style="width: 100px" /> 

@@ -1,0 +1,101 @@
+<div class="box-item">
+	<div class="fl">
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-topleft2.gif"></div>
+		<div class="folder-topcenter2 fl"><a class="link-folder" href="/GL/Home/Video/">Video</a></div>
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/folder-topright2.gif"></div>
+	</div>
+	<div class="box-middle1 list-item fl txtc">
+		
+		<div class="fl" id="video-title"><a href="javascript: void(0)"><?php echo $this->escape($this->files[0]->title); ?></a></div>
+		<div class="videoplayer" id="tMultimeidaPlayer" style="clear: both;">
+			<div id="tMultimeidaPlayerContainer">
+				<!--<a href="javascript: void(0)"><img src="<?php echo $this->files[0]->image_crop; ?>" width="280px" height="210px" /></a>-->
+				<input type="hidden" value="<?php echo $this->files[0]->url; ?>" />
+				<input type="hidden" name="firstFileId" id="firstFileId" value="<?php echo $this->files[0]->file_id; ?>" />
+				<br />
+			</div>
+			<div class="fl" id="tEmbedContainer"></div>
+		</div>
+
+		<div id="mediaplayer">
+			<script type="text/javascript" src="http://thoibaonganhang.vn/js/jwplayer58/jwplayer.js"></script>
+			<script type="text/javascript">
+		var filevideo = $('#tMultimeidaPlayer').find('input:first[type="hidden"]').attr('value');
+		
+				jwplayer("mediaplayer").setup({
+					flashplayer: "http://thoibaonganhang.vn/js/jwplayer58/player.swf",
+					width: "280",
+					height: "200",
+					file: filevideo,
+					stretching: "fill"
+				});
+			</script>
+		</div>
+
+	</div>
+	<div style="width: 300px;" class="fl">
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/stock-lr.gif"></div>
+
+
+<div id="MediaList" class="media fl">
+			<ul>
+			<?php for ($i = 1; $i < count($this->files); $i++) : ?>
+				<li>
+					<a class="link-othernews2" href="javascript: void(0)"><?php echo $this->escape($this->files[$i]->title); ?></a>
+					<input type="hidden" value="<?php echo $this->files[$i]->url; ?>" />
+					<input type="hidden" name="fileId" id="fileId" value="<?php echo $this->files[$i]->file_id; ?>" />
+					<input type="hidden" value="<?php echo $this->escape($this->files[$i]->description); ?>" />
+				</li>
+			<?php endfor; ?>	
+			</ul>
+		</div>
+		<div class="fl"><img alt="" src="<?php echo $this->APP_STATIC_SERVER; ?>/skin/<?php echo $this->APP_TEMPLATE; ?>/<?php echo $this->APP_SKIN; ?>/images/stock-lr.gif"></div>
+	</div> 
+</div>
+<script type="text/javascript">
+'Tomato.Modules.Multimedia.Widgets.Player'.namespace();
+Tomato.Modules.Multimedia.Widgets.Player.play = function(file, image, auto) {
+	var flashvars = { play: true, repeat: true, autostart: auto + '', file: file };
+	if (image != null) {
+		flashvars.image = image;
+	}
+	var params = { allowfullscreen: 'true', allowscriptaccess: 'always', menu: false };
+	swfobject.embedSWF('<?php echo $this->APP_STATIC_SERVER; ?>/js/jwplayer/player.swf', 'tMultimeidaPlayerContainer', '<?php echo $this->width ?>', '<?php echo $this->height ?>', '9.0.0', '<?php echo $this->APP_STATIC_SERVER; ?>/js/jwplayer/expressInstall.swf', flashvars, params, {});
+};
+$(document).ready(function() {	
+	var gHtmlCodes = {}, arr = null;	
+	<?php foreach ($this->files as $file) : ?>
+		gHtmlCodes['<?php echo $file->file_id; ?>']='<?php echo $file->html_code; ?>'
+	<?php endforeach; ?>
+
+	var image = $('#tMultimeidaPlayer').find('img:first').attr('src');
+	var file = $('#tMultimeidaPlayer').find('input:first[type="hidden"]').attr('value');
+	var fileId = $('#tMultimeidaPlayer').find('input:last[name="firstFileId"]').attr('value');
+	if (null != gHtmlCodes[fileId] && '' != gHtmlCodes[fileId]) {
+		$('#tMultimeidaPlayerContainer').css("display", "none");
+		$('#tEmbedContainer').html('<label>' + gHtmlCodes[fileId] + '</label>');
+	}
+	else {
+		$('#tEmbedContainer').html('');
+		$('#tMultimeidaPlayerContainer').css("display", "block");
+		Tomato.Modules.Multimedia.Widgets.Player.play(file, image, false);
+	}
+		
+	$("#tMultimeidaPlayerList a").click(function() {
+		var image = $(this).children('img').attr('src');
+		var file = $(this).parent().find('input:first[type="hidden"]').attr('value');
+		var fileId = $(this).parent().find('input:first[name="fileId"]').attr('value');
+		var desc = $(this).parent().find('input:last[type="hidden"]').attr('value');
+		$('#tMultimeidaPlayerDesc').html(desc);
+		if (null != gHtmlCodes[fileId] && '' != gHtmlCodes[fileId]) {
+			$('#tMultimeidaPlayerContainer').css("display", "none");
+			$('#tEmbedContainer').html('<label>' + gHtmlCodes[fileId] + '</label>');
+		}
+		else {
+			$('#tEmbedContainer').html('');
+			$('#tMultimeidaPlayerContainer').css("display", "block");
+			Tomato.Modules.Multimedia.Widgets.Player.play(file, image, true);
+		}
+	});
+});
+</script>

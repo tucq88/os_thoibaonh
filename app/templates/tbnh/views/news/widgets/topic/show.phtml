@@ -1,0 +1,23 @@
+<?php if (count($this->articles) > 0) : ?>
+<div class="box-right mgBottom" style="padding-top: 10px;">
+	<div class="box-header"><?php if ($this->tag != null) : ?><?php echo $this->escape($this->tag->tag_text); ?><?php endif; ?></div>
+	<div class="box-body" style="padding: 0pt 5px;">
+	<?php if ($this->articles != null) : ?>
+		<?php foreach ($this->articles as $index => $article) : ?>
+		<?php if ($index == 0) : ?>
+		<div class="top">
+			<?php if ($article->image_small != null) : ?><div class="sho"><a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>" title="<?php echo $this->escape($article->title); ?>"><img style="border-width: 0px;" alt="<?php echo $this->escape($article->title); ?>" src="<?php echo $article->image_small; ?>" /></a></div><?php endif; ?>
+			<h5><a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>" title="<?php echo $this->escape($article->title); ?>"> <?php echo $this->escape($article->title); ?></a></h5>
+			<?php echo $article->description; ?>
+		</div>
+		<div class="clear"></div>
+		<ul>
+		<?php else : ?>
+			<li><a href="<?php echo $this->url($article->getProperties(), 'news_article_details'); ?>"> <?php echo $this->escape($article->title); ?></a></li>
+		<?php endif; ?>
+		<?php endforeach; ?>
+		</ul>
+	<?php endif; ?>	
+	</div>
+</div>
+<?php endif; ?>

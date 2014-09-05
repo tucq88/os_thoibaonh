@@ -1,0 +1,29 @@
+<div class="folder-small fr">
+	<form action="#" id="frmIPTV">
+		<div class="folder-title2">
+			<div class="folder-topleft fl"></div>
+			<div class="list-title1 fl"><label class="link-folder">Lịch phát sóng</label></div>
+			<div class="folder-topright fr"></div>
+		</div>
+		<div class="folder-content folder-smallcontent">
+			<script language="javascript" type="text/javascript">IPTV();</script>
+		</div>
+		<div class="folder-content folder-smallcontent2">
+			<div id="iptv-channel" class="iptv"></div>
+		</div>
+		<div class="folder-bottom folder-smallbottom"></div>
+	</form>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#tUtilityTelevisionChannel').bind('change', function() {
+		var url = 'http://vnexpress.net/ListFile/iTV/' + this.value + '.xml';
+		Tomato.Modules.Ultility.Widgets.Television.loadChannel(url);		
+	}).change();
+});
+'Tomato.Modules.Ultility.Widgets.Television'.namespace();
+Tomato.Modules.Ultility.Widgets.Television.loadChannel = function(url) {
+	var data = '{ "url": "' + url + '"}';
+	var response = Tomato.Core.Widget.Loader.queueAction('utility', 'television', 'load', data, 'iptv-channel');
+};
+</script>

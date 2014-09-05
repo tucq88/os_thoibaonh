@@ -1,0 +1,13 @@
+<script type="text/javascript">
+dFormat('<?php echo date('n/j/Y g:i A'); ?>');
+<?php if ($this->categoryId) : ?>
+PAGE_FOLDER = <?php echo $this->categoryId; ?>;	
+PAGE_ID = <?php echo $this->categoryId; ?>;
+<?php endif; ?>
+</script>
+<div class="content-center fl">	
+	<div class="folder-header">
+		<script language="javascript" type="text/javascript">writeFolderTitle(PAGE_FOLDER);</script>
+		<div id="topnewsdate" class="fr"><?php echo date('d/m/Y g:i A', strtotime($this->article->activate_date)); ?></div>
+	</div>
+</div>

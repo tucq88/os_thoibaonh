@@ -1,0 +1,12 @@
+<div id="ctl00_cplCenter_opTags">
+	<div style="margin-bottom: 5px;" id="tag">
+		<span><?php echo $this->translator()->widget('title'); ?> </span>
+		<?php if (count($this->tags) > 0) : ?>
+		<?php foreach ($this->tags as $tag) : ?>
+		<a href="<?php echo $this->url($tag->getProperties(), 'tag_tag_details'); ?>"><?php echo $this->escape($tag->tag_text); ?></a>&nbsp;&nbsp;&nbsp;
+		<?php endforeach; ?>
+		<?php else : ?>
+	    	<?php echo $this->translator()->widget('have_not_been_tagged'); ?>
+	    <?php endif; ?>
+	</div>
+</div>

@@ -1,0 +1,160 @@
+<?php if ($this->menuData) : ?>
+<div class="clear"></div>
+<div id="tMenuContainer_<?php echo $this->uuid; ?>" class="mnav" style="width: 100%; display: none;">
+	<?php echo $this->menuData; ?>
+	<div class="submenu" style="display: block;">
+		<div class="" id="sub_Time"><div class="date"> <?php echo $this->translator()->widget('day_'.$this->day); ?><?php echo sprintf($this->translator()->widget('date'), $this->date); ?></div></div>
+		<div id="main" class="hide"></div>
+		<div class="" id="sub_FormSearch">
+			<form class="frmgblsearch" method="get" action="/news/search.aspx" id="frmSearch">
+				<input type="text" id="txtSearch" onclick="javascript: this.value='';" name="q" class="iptkeyword" value="Nhập từ khóa cần tìm" maxlength="255" size="44">&nbsp; 
+				<input type="submit" value="Tìm kiếm">
+			</form>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+<div class="clearfix"></div>
+<script type="text/javascript">
+var timeout = null;
+var categoryId = '<?php echo $this->categoryId; ?>';
+var home = true;
+var selected = null;
+var current = null;
+'Tomato.Modules.Menu.Widgets.Menu'.namespace();
+Tomato.Modules.Menu.Widgets.Menu.getSelected = function() {
+	selected = (selected == null) ? $('#tMenuContainer_<?php echo $this->uuid; ?>').find('li.selected') : selected;
+	return selected;	
+};
+
+Tomato.Modules.Menu.Widgets.Menu.setSelected = function(object, className) {
+	$(object).addClass(className);	
+};
+
+Tomato.Modules.Menu.Widgets.Menu.removeSelected = function(object, className) {
+	$(object).removeClass(className);	
+};
+
+Tomato.Modules.Menu.Widgets.Menu.bind = function(object, event, data) {
+	switch (event) {
+		case 'mouseover':
+			$(object).bind('mouseover', function() {
+				clearTimeout(timeout);
+				// get li selected
+				selected = Tomato.Modules.Menu.Widgets.Menu.getSelected();
+				if (selected != null) {
+					Tomato.Modules.Menu.Widgets.Menu.removeSelected(selected, 'selected');
+				}
+	
+				// set li current
+				current = this;
+				Tomato.Modules.Menu.Widgets.Menu.setSubMenu(data);
+				// hover subMenu
+				Tomato.Modules.Menu.Widgets.Menu.bindSubMenu($('.submenu:first'), data);
+			});
+			break;
+		case 'mouseout':
+			$(object).bind('mouseout', function() {
+				clearTimeout(timeout);
+				var second = (data == '') ? 200 : 500;
+				timeout = setTimeout(function() {
+					$(object).removeClass('selected');
+					Tomato.Modules.Menu.Widgets.Menu.setSubMenu(subMenu);
+					$(self).find('ul').hide();
+					if (selected != null) {
+						Tomato.Modules.Menu.Widgets.Menu.setSelected(selected, 'selected');
+					}
+				}, second);
+			});
+			break;
+	}
+};
+
+Tomato.Modules.Menu.Widgets.Menu.unbind = function(object, event) {
+	$(object).unbind(event);	
+};
+
+Tomato.Modules.Menu.Widgets.Menu.getSubMenu = function() {
+	return $('.submenu:first').html();
+};
+
+Tomato.Modules.Menu.Widgets.Menu.setSubMenu = function(html) {
+	$('.submenu:first').html(html);
+};
+
+Tomato.Modules.Menu.Widgets.Menu.bindSubMenu = function(object, data) {
+	clearTimeout(timeout);
+	if (data != null) {
+		$(object).find('li').each(function() {
+			var self = this;
+			$(self).bind('mouseover', function() {
+				clearTimeout(timeout);
+				if (current != null && selected != null) {
+					Tomato.Modules.Menu.Widgets.Menu.removeSelected(selected, 'selected');
+					Tomato.Modules.Menu.Widgets.Menu.setSelected(current, 'selected');
+				}
+			}).bind('mouseout', function() {
+				clearTimeout(timeout);
+				if (current != null) {
+					Tomato.Modules.Menu.Widgets.Menu.setSelected(selected, 'selected');
+					Tomato.Modules.Menu.Widgets.Menu.removeSelected(current, 'selected');
+				}
+				var second = (data != null) ? 500 : 500;
+				timeout = setTimeout(function() {
+					Tomato.Modules.Menu.Widgets.Menu.setSubMenu(subMenu);
+				}, second);
+			});
+		});
+	} else {
+		$(object).bind('mouseover', function() {
+			var self = this;
+			clearTimeout(timeout);
+			if (current != null && selected != null) {
+				Tomato.Modules.Menu.Widgets.Menu.removeSelected(selected, 'selected');
+				Tomato.Modules.Menu.Widgets.Menu.setSelected(current, 'selected');
+			}
+		}).bind('mouseout', function() {
+			clearTimeout(timeout);
+			$(self).unbind('mouseover');
+			$(self).unbind('mouseout');
+			if (current != null) {
+				Tomato.Modules.Menu.Widgets.Menu.setSelected(selected, 'selected');
+				Tomato.Modules.Menu.Widgets.Menu.removeSelected(current, 'selected');
+			}
+			Tomato.Modules.Menu.Widgets.Menu.setSubMenu(subMenu);
+		});
+	}
+};
+
+var subMenu = Tomato.Modules.Menu.Widgets.Menu.getSubMenu();
+$(document).ready(function() {
+	$('#tMenuContainer_<?php echo $this->uuid; ?>').find('li').each(function(i) {
+		var self = this;
+		$(self).find('ul').hide();
+		$(self).removeAttr('class').removeAttr('id');
+		$(self).after('<li class="mnav_vr"></li>');
+		var a = $(self).children('a:first');
+		$(a).html('<span>' + $(a).html() + '</span>');
+		var html = $(self).find('ul:first').html();
+		html = (html != null) ? '<ul>' + $(self).find('ul:first').html() + '</ul>' : '';
+		subMenu = Tomato.Modules.Menu.Widgets.Menu.getSubMenu();
+		
+		if ($(a).attr('href').indexOf('/' + categoryId + '-') >= 0) {
+			home = false;
+			Tomato.Modules.Menu.Widgets.Menu.setSelected(self, 'selected');
+			Tomato.Modules.Menu.Widgets.Menu.setSubMenu(html);
+		}
+		
+		Tomato.Modules.Menu.Widgets.Menu.bind(self, 'mouseover', html);
+		Tomato.Modules.Menu.Widgets.Menu.bind(self, 'mouseout', html);
+	})
+	
+	if (home == true) {
+		$('#tMenuContainer_<?php echo $this->uuid; ?>').find('li:first').removeAttr('class').addClass('selected');
+	}
+	$('#tMenuContainer_<?php echo $this->uuid; ?>').find('li:first').find('a:first').addClass('frstitm');
+	$('#tMenuContainer_<?php echo $this->uuid; ?> ul:first').addClass('zlstmnav');
+	$('#tMenuContainer_<?php echo $this->uuid; ?>').show();
+});
+</script>
+<?php endif; ?>

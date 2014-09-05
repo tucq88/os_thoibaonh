@@ -1,0 +1,9 @@
+### $Id: .htaccess 366 2009-10-09 09:29:57Z huuphuoc $
+
+### Rewrite rules for Zend Framework
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule !\.(ico|js|gif|jpeg|jpg|png|css|swf)$ index.php
+

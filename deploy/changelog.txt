@@ -1,0 +1,326 @@
+// =============================================================================
+// TomatoCMS changelog
+// $Id: changelog.txt 940 2010-01-21 11:10:28Z huuphuoc $
+// =============================================================================
+
+TODO:
+- Added: Add DTD structure for all configuration file (layout/plugin/hook/widget)
+- Added: Check ACL in each widget call?
+- Added: Config to add filter (or hook) for output of widget ?
+- Added: [hook Gravatar]
+- Added: [widget OnlineCounter] Count the guest online, users online
+- Added: [module news] Post article to Facebook after the article activated
+- Added: [module tag]
+- Added: *** Allow user to modify the layout of homepage (and/or any page) like BBC/Yahoo?
+- Added: The font size can be changed at the run time
+- Added: [widget FacebookActivity] Show most recently activities from Facebook
+- Added: [plugin UrlCache] Cache by language and template
+- Added: *** User can embbed widget in any page on any website? 
+- Added: Allow the widget to config itself is previewable or not
+- Added: [Layout Editor] Add template for creating layout quickly (when creating website have width of 960px, 780px, ...)
+- Added: [Layout Editor] Add refresh buttons for container
+- Added: Statistic widget when it is embbed on other site
+- Added: [Layout Editor] Cloning widget without reload data for widget again
+- Added: [Layout Editor] Auto saved in config mode
+- Added: *** Manage template (upload)
+- Added: When install new template, insert some data
+- Added: [Layout Editor] Add toolbar for inserting widget more easy (like Facebook toolbar at the bottom of page) 
+- Added: *** [Layout Editor] Support tab container
+- Added: *** [Layout Editor] Master page/Details page
+- Added: [Layout Editor] Import layout file (XML). This is very useful when there is not layout configured file in JSON format
+- Added: Improve Skin Editor: Split file into module, widget sections
+- Added: Improve language editor: Upload, Compare file
+- Added: Integrate with Disqus comment (http://disqus.com/)
+- Changed: Should we change hook and plugin term to "extension"? So end-user won't be confused hook and plugin
+- Fixed: [Layout Editor] Not allow user to drag widget if there is not any container
+- Fixed: [Layout Editor] Error: Saving layout when cloning widgets
+- Fixed: [Layout Editor] Error: Could not cloning from cloned widget if we remove source clone (when use clone() from jQuery)
+- Fixed: [Layout Editor] Error: The XML output of layout config is not well-formed if there is not any full row of 12 columns
+- Fixed: Imporve widget iTomato. Hide the container and widget at the load time
+- Fixed: [widget iTomato] Drag and drop widget on IE 7, 8
+
+* v2.0.2:
+- #0000037: Still received the message that informs the new version is available although it's latest version already
+- #0000038: Use the Url view helper to render all links, hence if we change the route the URLs are updated too
+- #0000039: Layout Editor does not load the styles of widget if user preview widget
+- #0000047: Add DTD format for template information file 
+- #0000048: Layout Editor: Could not preview layout if all widgets are in the initial status
+
+* v2.0.1 (2010-01-15):
+- #0000001: Fixed: Vote widget: Can choose multiple options although it is set as only one choice poll
+- #0000002: Published date in RSS output is incorrect
+- #0000003: Generated RSS links correctly
+- #0000004: Fix error: Could not load layout when select other template
+- #0000005: player widget do not play the video clip which was inserted embed code
+- #0000006: Removed unnecessary folders (data, test)
+- #0000007: Changed default image processing tool to GD
+- #0000008: Changed default timezone in application configuration file to Europe/London
+- #0000009: Removed superfish widget from menu module
+- #0000010: Improved iTomato widget: user can drag widget by selecting the head section of widget instead of anything inside the widget
+- #0000011: Removed unnecessary libraries (Scienta, simplehtmldom libraries from lib folder)
+- #0000012: Added DTD format for hook, module, widget configuration file
+- #0000013: Allows user to add <pre> tag in content of TinyMCE Editor
+- #0000014: Add WYSIWYG editor for HTML widget
+- #0000015: Made some improvements for Layout Editor: 
+			+ improve user interface, 
+			+ pass value for checkbox in widget configuration now work correctly  
+- #0000016: Displayed number of views of articles in category page, details page, latesthome widget for blog template
+- #0000017: TwitterUpdate widget: Make all links in content are clickable
+- #0000018: In the dashboard, informs user if there is newer version than current installed one
+- #0000019: Improve usability of some widgets which use cycle library
+- #0000020: ***** Make install wizard
+- #0000021: latesthome widget: Fixed error that it throws an exception if there is no category 
+- #0000023: Add syntaxhighlighter hook: Highlight code, very useful for programmer's blog
+- #0000025: ***** Improve comment system:
+			+ Threaded comments, unlimitted level
+			+ Allows user to reply comments in both frontend and backend
+			+ Shows avatar of commenters
+			+ Prevents spams		
+- #0000026: Don't use short_open_tag to render the output
+- #0000027: Use full URL in links, form actions, ajax requests and page redirections. 
+- #0000028: clipplayer widget do not work correctly
+- #0000029: In app settings, rename static.server to static_server
+- #0000030: User can goto the admin without logging in if user install to URL of http://domain/tomatocms/
+- #0000031: User can not preview widget in Layout Editor if user install to URL of http://domain/tomatocms/
+- #0000032: Exits if the version of PHP does not meet the requirements
+- #0000033: When generate RSS links, use url from app configuration instead of chanel_link in module configuration
+- #0000034: Separate skin of backend and frontend section
+- #0000035: Fixed error: Could not get the value of hook parameter
+- #0000036: Fixed error: Could not load the layout if user install TomatoCMS in subdirectory of web root
+
+* v2.0 (2010-01-04):
+- Added: [widget Livescore] Show overall standing, fixture and result from most popular football leagues
+- Added: User now can clear cache
+- Added: *** [Layout Editor] Capability of setting the loading method for widget (ajax or not)
+- Added: *** [Layout Editor] Default output container
+- Changed: [Layout Editor] Rename timeout to lifetime in widget cache settings 
+- Fixed: [Layout Editor] Error: Save layout to not well-form XML file 
+- Fixed: Add default controller (IndexController). The error occur if URL "/" has not been configured or configure by more than one modules
+- Fixed: Disable magic_quotes_gpc at runtime
+- Fixed: Error: Unable to call multiple helper of widgets if there are many widgets on same page
+
+* v2.0 RC 2 (2009-11-26):
+- Added: Build layout configuration file when user create/edit/change order of page
+- Added: Edit skin (CSS) file
+- Added: DTD format for layout config file
+- Added: [Layout Editor] Build JSON file for layout config if there is not any one for given page
+- Added: Manage page (add/edit)
+- Added: Manage user (edit/change password)
+- Added: Module upload and new view helper named Uploader
+- Added: Breadcump navigation in admin section
+- Added: List widgets: Filter widgets (by module or by installed status)
+- Added: Manage config for each module
+- Added: Default favicon
+- Added: Default dashboard for admin section
+- Added: [Layout Editor] User can sort list of full-row containers
+- Added: [Layout Editor] Containers are resizable
+- Added: [Layout Editor] User can delete container
+- Added: [Layout Editor] The containers now can be nested
+- Added: [Layout Editor] User can preview overall container withour performing preview action for each child widgets belong to it
+- Added: [Layout Editor] Add loading effect when switch to preview mode
+- Added: [Plugin zfdebug] Make a wrapper of ZFDebug plugin
+- Added: Module information file named about.xml
+- Added: Manage module (list/install/uninstall/upload)
+- Added: Powered by TomatoCMS Logo (black and white version)
+- Added: Layout for authenticate pages (login/logout/deny page) 
+- Added: Always put the footer at the bottom of page
+- Added: Add English language files
+- Added: Improve UI of language manager page
+- Added: Selectable property for templates which user can not set as mobile template
+- Added: Manage cache (list/delete)
+- Added: List PHP extensions that TomatoCMS require. Show warning if extension has not yet installed on server.
+- Added: [Layout Editor] Generate color for child container in palette instead of random color
+- Added: Display dialog box after user perform an ajax request successfully
+- Added: View helper FlashMessenger: Display the flash messeages after processing form submit
+- Added: Ability of localizing list of permissons for each module
+- Added: Ability of localizing list of modules
+- Added: Charset setting in application config file for database connection
+- Added: Use default cache to cache translation
+- Added: Group cache by tag. If you want to remove all cached items belong to a tag, simply remove this tag.
+- Added: Config file for Upload module. This file is used to config some params as tool for generating thumbnail, size of thumbnails
+- Added: *** [widget iTomato] Visitor can custome web page (drag and drop widget)
+- Added: *** [Layout Editor] User can config cache timeout for each widget
+- Added: *** Template for blogger 
+- Added: [widget news/blog] Show articles like blog entries
+- Added: [widget news/category] List categories and link to them
+- Added: [widget comment/disqus] Embed comments provided by www.disqus.com
+- Added: Widget can have its own helper
+- Changed: Move layout configuration from template folder to application configuration folder
+- Changed: In layout config file, treat cache info as widget attribute instead of param as early
+- Changed: Use t_core_ as prefix for all tables from core module. Will apply for other modules
+- Changed: Remove cache type parameter from widget
+- Changed: Use global cache object to cache widget instead of using Tomato_Core_Cache_File
+- Changed: Re-organize skin folder. All skin of same template will be put on the same folder named as template name 
+- Fixed: [Layout Editor] Don't remove widget if user drag and drop it within same container
+- Fixed: Add port for DB connection to application config file
+- Fixed: View helper RuleChecker does not work if the action which being checked permisson belong to other controller/module to current action
+- Fixed: In admin section, set the footer always be at the bottom of page
+- Fixed: Error: The plugin DefaultRouteRemover does not work if the URL configured in routes is the same as the default route
+- Fixed: Error: Plugin extends from Tomato_Core_Controller_Plugin can not get value of configured param
+- Fixed: Error: Plugin Redirector will redirect infinite loop
+- Fixed: [Layout Editor] Keep the widget mode when collapsing itself
+- Fixed: Keep session Id when upload by Uploader view helper
+- Fixed: Don't allow remove a group (role) if that group was locked
+- Fixed: Error: Throw exception when user visit a page if user has not been set permisson to this page
+- Fixed: Error: The website will create only one cache version for widget although there are many instance of same widget on page
+- Fixed: The cache timeout for each widget can be different from timeout of global cache
+- Fixed: Display warning message if php_zip extension has not been installed when user upload new hook/plugin/widget/...
+- Fixed: [Layout Editor] Error occur if we resize a container which its parent not is a full-row container
+- Fixed: [Layout Editor] Display the number of columns of child container is not correct when resize parent container
+- Fixed: Imporve language editor and config manager (use textarea for editable value)
+- Fixed: Error: Update config will replace \ with \\
+- Fixed: Cache manager do not work correctly if cache backend don't support tags or list ids.
+- Fixed: Generate cache key so that we can reuse the cached value if widget has been cached on other page
+- Fixed: Does not load from cached version when loading widget by ajax
+- Fixed: Check if the widget class exist or not before loading widget
+- Fixed: __autoload(): Check if the class file exist or not
+- Fixed: [widget SkinSelector] Avoid screen flicker when choose other skin
+
+* v2.0 RC 1 (2009-10-26):
+- Added: Manage hook (list/install/uninstall/upload/config)
+- Added: Manage hook target (list/add/remove)
+- Added: [Layout Editor] Make the size of widget is suitable with size of target container when drag-drop widget
+- Added: [plugin HookLoader] Load hook automatically instead of calling hook in controller action manually
+- Added: [hook EmotionIcon] Replace special characters with emotion icons
+- Added: [hook BadWordsCensor] Replace bad words with ***
+- Added: Manage page (list/ordering/delete)
+- Added: [Layout Editor] Save/load layout for page
+- Added: Manage templates and skins (list/activate/select skin)
+- Added: Sample configuration file (app.sample.ini)
+- Added: [widget utility/feed] Load feed from given URL
+- Added: [widget utility/twitterupdate] Show latest update from given Twitter account
+- Added: DateFormatter view helper: Show the diff time between given timestamp and current date time
+- Added: Group list of widgets by module
+- Added: [widget core/skinselector] User can choose available skins based on the current template
+- Added: The skin can be changed at the run time
+- Added: [widget utility/socialshare] Share web page via variuos social network (Twitter, Facebook, Technorati, Delicious, StumbleUpon)
+- Added: [Layout Editor] Allow user to set the param value from request
+- Added: The following widgets can set param from request: news/breadcump, news/mostcommented, news/latestcategory, news/mostviewd, news/stickycategory, news/subcategory
+- Changed: Move all styles widgets/site/custome into only one file (default.css) (to user can custome widget styles in admin section)
+- Fixed: [Layout Editor] Disable container/widget selection
+- Fixed: [Layout Editor] Error: The XML output of layout config is not well-formed when there is a container with full of 12 columns
+- Fixed: [Layout Editor] Error: When saving layout, the removed widgets are still available in the list of widgets belong to container
+- Fixed: [Layout Editor] When saving layout, keep order of widgets in each container
+- Fixed: [Layout Editor] Saving layout work correctly if user drag widget from a container to other container
+- Fixed: [Layout Editor] Error: When user drag a widget to other container and make a clone of this widget, the new widget display at the original container, not at new container
+
+* v2.0 beta 2 (2009-10-16):
+- Added: Group language file by section (in the case the list of language are too long)
+- Added: Add title field for widget
+- Added: [Layout Editor] Initial release
+- Added: [Layout Editor] Make all widgets priveweable
+- Added: [Layout Editor] Add action buttons for container (collapse, remove)
+- Added: Add site URL configuration param
+- Added: Manage user (add)
+- Added: [Layout Editor] Add button for cloning a widget
+- Added: [Layout Editor] User can switch between preview mode and config mode
+- Changed: Improve performance when loading widget via ajax caller by putting the CSS at the head and JS at the bottom of page
+
+* v2.0 beta 1 (2009-10-09):
+- Added: [widget news/event] Show articles in event
+- Added: Ajax processing in widget
+- Added: [widget poll/vote] Use ajax instead of popup as in v1
+- Added: Language for each widget
+- Added: Language Editor (for module/widget)
+- Added: Set rule for both role and user
+- Added: Manage privilege (add/delete), 
+- Added: Allow user to add/delete resource (resources are loaded from config file)
+- Added: Manage role (list/add/delete/lock)
+- Added: Manage user (list (including filter)/activate)
+- Added: Manage widget (list/install/uninstall/upload)
+- Added: [widget utility/clipplayer] Play the video clip
+- Added: Manage plugin (list/install/uninstall/config/upload)
+- Changed: Change the directories structure, so the app can run on the shared hosting
+
+* v2.0 alpha 3 (2009-10-02):
+- Added: [plugin Redirector] Redirect URI (configurable)
+- Added: [hook ContentSplitter] Split long article into smaller section 
+by placing <!-- more --> in the article
+- Added: [widget utility/countdown] Show the clock countdown to given event
+- Added: Design XML format for widget information file (named about.xml)
+- Added: [widget utility/youtubeplayer] Play the clip on YouTube (user only need input the URL to webpage, not URL to clip file)
+- Added: Handle controller/action not found error
+- Added: Handle data not found error
+- Added: [plugin GASupport] Allow view our website if the request contain string generated by Google Analytic
+- Added: Move all module settings from database to file (named config.ini in each modules)
+- Added: [module news] Add RSS for latest articles (belong or do not belong to category)
+- Added: [module news] RSS link in the head section for index and category page
+- Added: [module news] Add the meta keyword, meta description tag for index/category/article page
+- Added: [module news] Set homepage title by using site title (configured in config.ini) instead of "Homepage"
+- Added: All datetime format are moved to config file (app.ini)
+- Added: [viewhelper GlobalConfig] Get global setting from application configuration file
+- Added: Sort layout of pages by priority
+- Added: [plugin SessionKeeper] Set session Id manually by taking its value from request 
+(some library as SWFUpload do not keep session Id)
+
+* v2.0 alpha 2 (2009-09-20):
+- Added: Add timezone to configuration file
+- Added: Support permisson/rule for given user in ACL
+- Added: Use permisson.xml to config permisson for each module
+- Added: [plugin DefaultRouteRemover] This plugin prevent user from accessing the website 
+by default URL in the format "module/controller/action"
+- Added: [plugin ActionCache] Cache action to HTML (simillar to plugin UrlCache)  
+- Added: User can preview widget when build the layout
+- Added: Ajax loader for widget
+- Added: Add effect when loading widget by ajax
+- Added: [plugin IpLock] Prevent user from accessing website from given IP(s)
+- Added: Deny access handler
+- Added: [hook WordTagStrip] Remove all HTML tags generated by Microsoft Word
+- Added: [hook ImageLightbox] Create slideshow contain all of images in article. 
+User can view this slide by clicking on any image in the article.
+- Added: File config.xml added for setting params of hook
+- Added: [plugin UrlTracker] Store the current URI in the session
+- Added: [plugin AdminAccess] Prevent user from accessing admin section from ip(s) 
+- Changed: Organize the hooks folder
+- Changed: Organize the plugins folder
+- Changed: Organize the widgets folder. Each widget will be located as subfolder 
+of folder named "widgets" in each module
+
+* v2.0 alpha 1 (2009-09-05):
+- Added: Map URL to layout
+- Added: Use xml file to config layout
+- Added: [plugin Template] Support multiple templates
+- Added: [plugin UrlCache] Support cache page by URL (static or dynamic by using pattern)
+- Added: Support cache widget by setting in layout configuration file instead 
+of hardcode in each widget
+- Added: Config javascript and CSS source file in layout configuration file, 
+then use these only one time in each response
+- Added: Allow widget param get the value from URL request
+- Added: [widget core/html] Render static HTML content
+- Added: Use <![CDATA]]> to set the HTML content as value of param
+- Added: [plugin MobileAgent] Support browse by mobile device
+- Added: [plugin RequestLogger] Logging all requests including requests come from search engine crawler
+- Added: Log only one request per page (not log other javascript-type or ajax request from that page)
+- Added: Support master-slave connection for database adapter
+- Added: Cache the content procedured by layout loader into a PHP file
+- Added: [widget news/breadcump] Show the breadcump to category
+- Added: [widget news/hotest] 
+- Added: [widget news/latestcategory]
+- Added: [widget news/latestcomment]
+- Added: [widget news/latesthome]
+- Added: [widget news/mostcommented]
+- Added: [widget news/mostviewd]
+- Added: [widget news/newer]
+- Added: [widget news/newest]
+- Added: [widget news/older]
+- Added: [widget news/siblingcategory]
+- Added: [widget news/stickycategory]
+- Added: [widget news/subcategory]
+- Added: [widget ad/zone]
+- Added: [widget comment/comment]
+- Added: [widget multimedia/player]
+- Added: [widget multimedia/slideshow]
+- Added: [widget poll/vote]
+- Added: [widget utility/sportchannel]
+- Changed: Place all the ajax request for widgets at the bottom of page
+- Changed: Optimize database schema (In many categories that the article belong to, 
+set one of them as default category for article, ...)
+- Changed: Javascript: Rewrite classes to use namespace
+- Changed: Use view helper for rendering most of views
+- Changed: [module ad] Move script for ad (advertising) module from head section 
+of layout to resource section in config file
+- Changed: [module ad] Move SWFObject script from head section of layout to resource section in config file 
+- Changed: Move layout as seperate module to core module
+- Fixed: Create multiple cache file for same URL if user browse by PC (using 
+default template) or mobile (mobile template)
+- Fixed: [viewhelper SubString] Check whether the module mbstring (Multibyte String) is installed 
